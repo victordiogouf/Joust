@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://yta5pev840lo"]
+
+[ext_resource type="Script" uid="uid://bpract83nxamb" path="res://button.gd" id="1_l2arl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_731nq"]
+font_size = 48
+
+[node name="WinScreen" type="Control" unique_id=1938848586]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=189778145]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -33.5
+offset_right = 160.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Você Ganhou!"
+label_settings = SubResource("LabelSettings_731nq")
+
+[node name="Button" type="Button" parent="." unique_id=534715942]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.5
+offset_top = 66.5
+offset_right = 71.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "JOGAR NOVAMENTE"
+script = ExtResource("1_l2arl")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bqceinnsmwhk6"]
+
+[ext_resource type="Texture2D" uid="uid://d22ujneuvm32p" path="res://assets/6c7ee101-9afe-485a-a346-1ecf50f6fca4.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://bx8pwun0lrf2g" path="res://player.gd" id="1_onrkg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1gtx"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(41.539185, 887.6968, 198.15991, 227.30115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kej8o"]
+size = Vector2(18, 34)
+
+[node name="Player" type="CharacterBody2D" unique_id=1486618973]
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=663011487]
+scale = Vector2(0.4, 0.4)
+texture = SubResource("AtlasTexture_c1gtx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1105182322]
+polygon = PackedVector2Array(33, -17, -37, -4, -24, 45, -11, 45)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=682740113]
+position = Vector2(-6, -25)
+shape = SubResource("RectangleShape2D_kej8o")

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://uy0yvh2202vp"]
+
+[ext_resource type="Script" uid="uid://d4mmo8psjvf0u" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://d22ujneuvm32p" path="res://assets/6c7ee101-9afe-485a-a346-1ecf50f6fca4.png" id="1_7k104"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1gtx"]
+atlas = ExtResource("1_7k104")
+region = Rect2(276.4251, 865.752, 200.7044, 214.8996)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1052546259]
+collision_layer = 2
+script = ExtResource("1_4gyqm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1544742860]
+modulate = Color(1.240955, 0.99683386, 0, 1)
+scale = Vector2(0.33, 0.33)
+texture = SubResource("AtlasTexture_c1gtx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=258969246]
+polygon = PackedVector2Array(43, -25, -31, 38, -30, -30)

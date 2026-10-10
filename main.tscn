@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://xs88nsgtof33"]
+
+[ext_resource type="PackedScene" uid="uid://bqceinnsmwhk6" path="res://player.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dphmmqd3mu2r8" path="res://lava.gd" id="1_7mycd"]
+[ext_resource type="Script" uid="uid://r71ykqvgw3xs" path="res://main.gd" id="1_272bh"]
+[ext_resource type="Texture2D" uid="uid://1123cuv53180" path="res://assets/lava.png" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cj8m0h7wlnd3f" path="res://platform.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://db4b1uiyct70j" path="res://ground.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://uy0yvh2202vp" path="res://enemy.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://dgd0aq4g8w24v" path="res://object_pool.gd" id="8_5vw27"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kej8o"]
+size = Vector2(1683, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wn88s"]
+size = Vector2(2375, 79.5)
+
+[node name="Main" type="Node" unique_id=1736067943]
+script = ExtResource("1_272bh")
+enemy_scene = ExtResource("4_1bvp3")
+enemy_spawn_1 = Vector2(-49, 95)
+enemy_spawn_2 = Vector2(1160, 300)
+
+[node name="Lava" type="Area2D" parent="." unique_id=1911028972]
+collision_layer = 4
+script = ExtResource("1_7mycd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Lava" unique_id=1767380779]
+position = Vector2(573.75, 646)
+scale = Vector2(118.65, 10)
+texture = ExtResource("1_lquwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lava" unique_id=230701947]
+position = Vector2(596.5, 646)
+shape = SubResource("RectangleShape2D_kej8o")
+
+[node name="Player" parent="." unique_id=1486618973 instance=ExtResource("1_0xm2m")]
+position = Vector2(595, 498)
+collision_mask = 7
+
+[node name="Platform" parent="." unique_id=656228786 instance=ExtResource("2_h2yge")]
+position = Vector2(107, 167)
+
+[node name="Platform2" parent="." unique_id=1766924768 instance=ExtResource("2_h2yge")]
+position = Vector2(1046, 184)
+
+[node name="Platform3" parent="." unique_id=2095403237 instance=ExtResource("2_h2yge")]
+position = Vector2(194, 370)
+
+[node name="Platform4" parent="." unique_id=1686060972 instance=ExtResource("2_h2yge")]
+position = Vector2(909, 382)
+
+[node name="Ground" parent="." unique_id=473532699 instance=ExtResource("3_h2yge")]
+position = Vector2(581, 599)
+
+[node name="Platform5" parent="." unique_id=1178458017 instance=ExtResource("2_h2yge")]
+position = Vector2(552, 179)
+
+[node name="TopWall" type="StaticBody2D" parent="." unique_id=917505793]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall" unique_id=245989821]
+position = Vector2(831.5, -164)
+shape = SubResource("RectangleShape2D_wn88s")
+
+[node name="Enemies" type="Node" parent="." unique_id=2079412135]
+script = ExtResource("8_5vw27")
+scene = ExtResource("4_1bvp3")
+pool_size = 10
+metadata/_custom_type_script = "uid://dgd0aq4g8w24v"
+
+[connection signal="body_entered" from="Lava" to="Lava" method="_on_body_entered"]
