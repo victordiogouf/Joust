@@ -43,12 +43,11 @@ func return_on_signal(signal_name: StringName) -> void:
 				obj.connect(signal_name, callable)
 
 func _deactivate_object(obj: Node2D) -> void:
-	pass
-	#obj.hide()
-	#obj.process_mode = Node.PROCESS_MODE_DISABLED
-	#obj.set_process(false)
-	#obj.set_physics_process(false)
-	#_toggle_collisions_recursive(obj, true)
+	obj.hide()
+	obj.process_mode = Node.PROCESS_MODE_DISABLED
+	obj.set_process(false)
+	obj.set_physics_process(false)
+	_toggle_collisions_recursive(obj, true)
 
 func _activate_object(obj: Node2D) -> void:
 	obj.process_mode = Node.PROCESS_MODE_INHERIT

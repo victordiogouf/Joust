@@ -27,18 +27,23 @@ func on_enemy_off_screen(enemy: Node) -> void:
 
 func on_lava_hit() -> void:
 	lives -= 1
-	
-	call_deferred("check_lives")
-	
-	player.respawn()
+	if lives == 0:
+		call_deferred("game_over")
+		return
+	player.call_deferred("respawn")
 	
 func on_player_defeated(enemy: Node) -> void:
 	lives -= 1
+	if lives == 0:
+		call_deferred("game_over")
+		return
+	player.call_deferred("respawn")
+	call_deferred("update_enemy", enemy)
 	
-	call_deferred("check_lives")
-
-	player.respawn()
+func game_over() -> void:
+	get_tree().change_scene_to_file("res://game_over_screen.tscn")
 	
+func update_enemy(enemy: Node) -> void:
 	# Enemy was moving with player after
 	# player's respawn function changed its position
 	# Maybe was something with the collisions
@@ -48,12 +53,7 @@ func on_player_defeated(enemy: Node) -> void:
 	add_child(new_enemy)
 	new_enemy.sense = enemy.sense
 	new_enemy.position = enemy.position
-	enemy.queue_free()
-	
-
-func check_lives() -> void:
-	if lives == 0:
-		get_tree().change_scene_to_file("res://game_over_screen.tscn")
+	enemy.queue_free()	
 			
 func on_enemy_defeated(enemy: Node) -> void:
 	#enemies.return_to_pool(enemy)
